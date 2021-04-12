@@ -66,14 +66,16 @@ class SudokuSolver {
       startCol = col - (col % 3);
     for (let i = 0; i < 3; i++)
       for (let j = 0;j < 3; j++)
-        if (grid[i + startRow][j + startCol] == value) return false;
+        if (grid[i + startRow][j + startCol] == value) {
+        return false;
+      }   
       return true;
   }
 
   solveSuduko(grid,row,col) {
 
 
-    if (row == 9 - 1 && col == 9)
+    if (row === 9 - 1 && col === 9)
       return grid;
 
 
@@ -105,17 +107,17 @@ class SudokuSolver {
   isSafe(grid,row,col,num){
 
 
-    for (let x = 0; x <= 8; x++) if (grid[row][x] == num) return false;
+    for (let x = 0; x <= 8; x++) if (grid[row][x] === num) return false;
 
 
-    for (let x = 0; x <= 8; x++) if (grid[x][col] == num) return false;
+    for (let x = 0; x <= 8; x++) if (grid[x][col] === num) return false;
 
 
-    let startRow = row - row % 3, 
-      startCol = col - col % 3;
+    let startRow = row - (row % 3), 
+      startCol = col - (col % 3);
     for (let i = 0; i < 3; i++)
       for (let j = 0; j < 3; j++)
-        if (grid[i + startRow][j + startCol] == num) return false;
+        if (grid[i + startRow][j + startCol] === num) return false;
 
     return true;
   }

@@ -20,7 +20,6 @@ module.exports = function (app) {
         !/[a-i]/i.test(row) ||
         !/[1-9]/i.test(column)
       ) {
-        console.log("invlaid corrdinate :>>");
         res.json({ error: "Invalid coordinate" })
         return;
       } 
@@ -36,13 +35,19 @@ module.exports = function (app) {
         res.json({ error: "Invalid characters in puzzle" });
         return;
       }
-
+      
       let validCol = solver.checkColPlacement(puzzle, row, column, value);
       let validReg = solver.checkRegionPlacement(puzzle, row, column, value);
       let validRow = solver.checkRowPlacement(puzzle, row, column, value);
       let conflicts = [];
+      
+      //if (coordinate || value === validCol && validReg && validRow) {
+      //  res.json({ valid: true })
+      //}      
+      
       if (validCol && validReg && validRow) {
         res.json({ valid: true });
+        return;
       } else {
         if (!validRow) {
           conflicts.push("row");
