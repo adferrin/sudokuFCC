@@ -100,7 +100,7 @@ suite('Functional Tests', () => {
         .end(function (err, res) {
             assert.equal(res.status, 200);
             assert.equal(res.body.valid, false);
-            assert.equal(res.body.conflict.length, 1);
+            assert.equal(res.body.conflict.length, 2);
             done();
         });
     });
@@ -113,7 +113,7 @@ suite('Functional Tests', () => {
         .end(function (err, res) {
             assert.equal(res.status, 200);
             assert.equal(res.body.valid, false);
-            assert.equal(res.body.conflict.length, 2);
+            assert.equal(res.body.conflict.length, 1);
             done();
         });
     });
@@ -168,7 +168,7 @@ suite('Functional Tests', () => {
         })
         .end(function (err, res) {
             assert.equal(res.status, 200);
-            assert.equal(res.body.error, "Expected puzzle to be 81 characters long");
+            assert.equal(res.body.error, "Required field(s) missing");
             done();
         });
     });
@@ -193,6 +193,7 @@ suite('Functional Tests', () => {
         .end(function (err, res) {
             assert.equal(res.status, 200);
             assert.equal(res.body.error, "Invalid value");
+            done();
         });
     });
 });

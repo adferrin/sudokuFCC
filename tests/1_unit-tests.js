@@ -2,18 +2,18 @@ const chai = require('chai');
 const assert = chai.assert;
 
 const Solver = require('../controllers/sudoku-solver.js');
-let solver;
+let solver = new Solver();
 
 let validPuzzle = 
 "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.";
 
 suite('UnitTests', () => {
     suite("solver tests", function() {
-        test("Logic handles a valid puzzle sttring of 81 characters", function (done) {
+        test("Logic handles a valid puzzle string of 81 characters", function (done) {
             let complete = 
             "135762984946381257728459613694517832812936745357824196473298561581673429269145378";
             assert.equal(solver.solve(validPuzzle), complete);
-            done;
+            done();
         });
 
         test("Logic hales a puzzle string with invalid characters (not 1-9 or .)", function (done) {
@@ -26,7 +26,7 @@ suite('UnitTests', () => {
         test("Logic handles a puzzle string that is not 81 characters in length", function (done) {
             let inValidPuzzle = 
             "1.5..2.84..63.12.7.2..5...89..9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.";
-            assert.equal(sovler.solve(inValidPuzzle), false);
+            assert.equal(solver.solve(inValidPuzzle), false);
             done();
         });
 
@@ -67,8 +67,10 @@ suite('UnitTests', () => {
         });
 
         test("Invalid puzzle strings fail the solver", function (done) {
-            assert.equal(solver.solve(inValidPuzzle), 
-            "1.5..2.84..63.12.7.2..5....439..1..a.8.2.3674.3.7.2..9.47..z.8..1..16....926914.37.")
+            let inValidPuzzle = 
+            "115..2.84..63.12.7.2..5...89..9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.";
+            assert.equal(solver.solve(inValidPuzzle), false);
+            done();
         });
 
         test("Solver return the expected solution for an incomplete puzzle", function (done) {

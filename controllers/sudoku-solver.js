@@ -75,7 +75,7 @@ class SudokuSolver {
   solveSuduko(grid,row,col) {
 
 
-    if (row === 9 - 1 && col === 9)
+    if (row == 9 - 1 && col == 9)
       return grid;
 
 
@@ -155,6 +155,12 @@ class SudokuSolver {
 
 
   solve(puzzleString) {
+    if (puzzleString.length != 81) {
+      return false;
+    }
+    if (/[^0-9.]/g.test(puzzleString)) {
+      return false;
+    }
     let grid = this.transform(puzzleString);
     let solved = this.solveSuduko(grid, 0, 0);
     if(!solved) {
