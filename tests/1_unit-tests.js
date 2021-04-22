@@ -16,7 +16,7 @@ suite('UnitTests', () => {
             done();
         });
 
-        test("Logic hales a puzzle string with invalid characters (not 1-9 or .)", function (done) {
+        test("Logic handles a puzzle string with invalid characters (not 1-9 or .)", function (done) {
             let inValidPuzzle = 
             "1.5..2.84..63.12.7.2..5....9..1..a.8.2.3674.3.7.2..9.47..z.8..1..16....926914.37.";
             assert.equal(solver.solve(inValidPuzzle), false);

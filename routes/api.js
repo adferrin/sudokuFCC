@@ -47,7 +47,7 @@ module.exports = function (app) {
       
       if (validCol && validReg && validRow) {
         res.json({ valid: true });
-        return;
+      //  return;
       } else {
         if (!validRow) {
           conflicts.push("row");
